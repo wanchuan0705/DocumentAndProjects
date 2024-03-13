@@ -14,11 +14,12 @@ namespace CoreCms.Net.Web.WebApi.Controllers
         /// <summary>
         /// 构造函数
         /// </summary>
-        
+
         public AdvertController(ICoreCmsAdvertisementServices advertisementServices)
         {
             _advertisementServices = advertisementServices;
         }
+
         #region 获取广告列表========================================
 
         [HttpPost]
@@ -26,6 +27,8 @@ namespace CoreCms.Net.Web.WebApi.Controllers
         {
             var jm = new WebApiCallBack();
             var list = await _advertisementServices.QueryPageAsync(p => p.code == entity.where, p => p.createTime, OrderByType.Desc, entity.page, entity.limit);
+            jm.status = true;
+            jm.data = list;
             return jm;
         }
 

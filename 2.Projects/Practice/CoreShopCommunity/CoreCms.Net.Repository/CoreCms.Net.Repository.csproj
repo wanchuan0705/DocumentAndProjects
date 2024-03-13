@@ -3,10 +3,15 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreCms.Net.Core\CoreCms.Net.Core.csproj" />
+    <PackageReference Include="SqlSugar.IOC" Version="2.0.0" />
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.145" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CoreCms.Net.Model\CoreCms.Net.Model.csproj" />
   </ItemGroup>
 
