@@ -1,12 +1,22 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Linq;
+using Microsoft.Extensions.Configuration.Json;
 
 namespace CoreCms.Net.Configuration
 {
-    internal class AppSettingsHelper
+    public class AppSettingsHelper
     {
         private static IConfiguration Configuration { get; set; }
+
+        public AppSettingsHelper(string contentPath)
+        {
+            string Path = "appsettings.json";
+            Configuration = new ConfigurationBuilder().SetBasePath(contentPath).Add(new JsonConfigurationSource
+            {
+                Path = Path,
+                Optional = false,
+                ReloadOnChange = true
+            }).Build();
+        }
 
         /// <summary>
         /// 封装要操作的字符

@@ -11,7 +11,14 @@ namespace CoreCms.Net.Web.WebApi.Controllers
     public class AdvertController : ControllerBase
     {
         private readonly ICoreCmsAdvertisementServices _advertisementServices;
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        
+        public AdvertController(ICoreCmsAdvertisementServices advertisementServices)
+        {
+            _advertisementServices = advertisementServices;
+        }
         #region 获取广告列表========================================
 
         [HttpPost]

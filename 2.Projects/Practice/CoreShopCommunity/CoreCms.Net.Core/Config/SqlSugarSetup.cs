@@ -1,8 +1,8 @@
 ﻿using CoreCms.Net.Configuration;
-using CoreCms.Net.Loging;
 using Microsoft.Extensions.DependencyInjection;
-using SqlSugar;
 using SqlSugar.IOC;
+using SqlSugar;
+using CoreCms.Net.Loging;
 
 namespace CoreCms.Net.Core.Config
 {

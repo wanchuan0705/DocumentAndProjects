@@ -1,4 +1,5 @@
 ﻿using CoreCms.Net.Model.ViewModels.Basics;
+using CoreCms.Net.Repository;
 using SqlSugar;
 using System.Linq.Expressions;
 
@@ -29,9 +30,10 @@ namespace CoreCms.Net.Services
     {
         public IBaseRepository<T> BaseDal;
 
-        public Task<IPageList<T>> QueryPageAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>> orderByExpression, OrderByType orderByType, int pageIndex = -1, int pageSize = 20, bool blUseNoLock = false)
+        public async Task<IPageList<T>> QueryPageAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>> orderByExpression, OrderByType orderByType, int pageIndex = -1, int pageSize = 20, bool blUseNoLock = false)
         {
-            throw new NotImplementedException();
+            IPageList<T> QueryPage = await BaseDal.QueryPageAsync(predicate, orderByExpression, orderByType, pageIndex, pageSize, blUseNoLock);
+            return QueryPage;
         }
     }
 

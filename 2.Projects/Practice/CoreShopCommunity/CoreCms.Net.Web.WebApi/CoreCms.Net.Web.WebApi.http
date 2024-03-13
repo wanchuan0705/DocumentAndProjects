@@ -1,6 +1,0 @@
-@CoreCms.Net.Web.WebApi_HostAddress = http://localhost:5253
-
-GET {{CoreCms.Net.Web.WebApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

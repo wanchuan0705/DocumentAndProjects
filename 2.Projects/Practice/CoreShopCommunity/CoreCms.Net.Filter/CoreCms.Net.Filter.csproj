@@ -3,10 +3,15 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreCms.Net.Core\CoreCms.Net.Core.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.38" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreCms.Net.Loging\CoreCms.Net.Loging.csproj" />
     <ProjectReference Include="..\CoreCms.Net.Model\CoreCms.Net.Model.csproj" />
   </ItemGroup>
 

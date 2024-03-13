@@ -1,10 +1,5 @@
 ﻿using NLog;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreCms.Net.Loging
 {
@@ -62,10 +57,24 @@ namespace CoreCms.Net.Loging
         public static void WriteFileLog(LogLevel logLevel, LogType logType, string logTitle, string message, Exception exception = null)
         {
             LogEventInfo theEvent = new LogEventInfo(logLevel, FileLogger.Name, message);
-            theEvent.Properties["LogType"] = logLevel.ToString();
+            theEvent.Properties["LogType"] = logType.ToString();
             theEvent.Properties["LogTitle"] = logTitle;
             theEvent.Exception = exception;
             FileLogger.Log(theEvent);
+        }
+
+        /// <summary>
+        /// 同时写入到日志到数据库和文件
+        /// </summary>
+        /// <param name="logLevel">日志等级</param>
+        /// <param name="logType">日志类型</param>
+        /// <param name="logTitle">标题（255字符）</param>
+        /// <param name="message">信息</param>
+        /// <param name="exception">异常</param>
+        public static void WriteAll(LogLevel logLevel, LogType logType, string logTitle, string message, Exception exception = null)
+        {
+            //先存文件
+            WriteFileLog(logLevel, logType, logTitle, message, exception);
         }
     }
 }
