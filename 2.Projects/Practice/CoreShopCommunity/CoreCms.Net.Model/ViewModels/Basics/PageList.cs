@@ -8,8 +8,6 @@
  *        Description: 暂无
  ***********************************************************************/
 
-using System.Collections.Generic;
-
 namespace CoreCms.Net.Model.ViewModels.Basics
 {
     public interface IPageList<T> : IList<T>

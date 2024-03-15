@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CoreCms.Net.Configuration\CoreCms.Net.Configuration.csproj" />
     <ProjectReference Include="..\CoreCms.Net.Loging\CoreCms.Net.Loging.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Model\CoreCms.Net.Model.csproj" />
   </ItemGroup>
 
 </Project>

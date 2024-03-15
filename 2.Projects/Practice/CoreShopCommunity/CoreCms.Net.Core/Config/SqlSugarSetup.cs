@@ -1,8 +1,10 @@
 ﻿using CoreCms.Net.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using SqlSugar.IOC;
-using SqlSugar;
 using CoreCms.Net.Loging;
+using CoreCms.Net.Model.Entities.Advert;
+using Microsoft.Extensions.DependencyInjection;
+using SqlSugar;
+using SqlSugar.IOC;
+using System.Reflection;
 
 namespace CoreCms.Net.Core.Config
 {
@@ -22,6 +24,14 @@ namespace CoreCms.Net.Core.Config
                 //是否开启自动关闭数据库连接-//不舍城true要手动关闭
                 IsAutoCloseConnection = true,
             });
+            /***批量创建表***/
+            //语法1：
+            string basePath = AppContext.BaseDirectory;
+            string modelDllPath = Path.Combine(basePath, "CoreCms.Net.Model.dll");
+            Type[] types = Assembly
+                    .LoadFrom(modelDllPath)//如果 .dll报错，可以换成 xxx.exe 有些生成的是exe
+                    .GetTypes().Where(it => it.Name.StartsWith("Core"))//命名空间过滤，可以写其他条件
+                    .ToArray();//断点调试一下是不是需要的Type，不是需要的在进行过滤
             //设置参数
             services.ConfigurationSugar(db =>
             {
@@ -31,6 +41,7 @@ namespace CoreCms.Net.Core.Config
                 {
                     NLogUtil.WriteFileLog(NLog.LogLevel.Error, LogType.Other, "SqlSugar", "执行SQL错误时间事件", exp);
                 };
+                db.CodeFirst.SetStringDefaultLength(255).InitTables(types);
             });
         }
     }

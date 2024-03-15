@@ -22,6 +22,8 @@ builder.Services.AddSqlSugarSetup();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
+    #region 注册控制器，不注册也可以，因为ASP.NET Core 框架会自动扫描你的应用程序程序集，并注册所有符合默认约定的控制器，包括 API 控制器。
+
     //获取所有控制器类型并使用属性注入,ControllerBase 是 ASP.NET Core MVC 框架中所有控制器的基类。
     var controllerBaseType = typeof(ControllerBase);
     //Autofac 注册指定程序集中的所有类型。
@@ -32,6 +34,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
         .Where(t => controllerBaseType.IsAssignableFrom(t) && t != controllerBaseType)
         .PropertiesAutowired();
 
+    #endregion 注册控制器，不注册也可以，因为ASP.NET Core 框架会自动扫描你的应用程序程序集，并注册所有符合默认约定的控制器，包括 API 控制器。
+
     containerBuilder.RegisterModule(new AutoFacModuleRegister());
 });
 
@@ -40,8 +44,12 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 //注册mvc，注册razor引擎视图
 builder.Services.AddMvc(option =>
 {
+    //实体验证
+    option.Filters.Add<RequiredErrorForClent>();
     //异常处理
     option.Filters.Add<GlobalExceptionsFilterForClent>();
+    //Swagger剔除不需要加入api展示的列表
+    //option.Conventions.Add(new ApiExplorerIgnores());
 });
 //强制显示中文
 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
@@ -51,7 +59,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+    });
 }
 
 app.UseHttpsRedirection();

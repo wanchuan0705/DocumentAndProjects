@@ -1,4 +1,5 @@
 ﻿using CoreCms.Net.Model.FromBody;
+using CoreCms.Net.Model.ViewModels.FromBody;
 using CoreCms.Net.Model.ViewModels.UI;
 using CoreCms.Net.Services.Advert;
 using Microsoft.AspNetCore.Mvc;
@@ -33,5 +34,17 @@ namespace CoreCms.Net.Web.WebApi.Controllers
         }
 
         #endregion 获取广告列表========================================
+
+        #region 获取广告位置信息=============================================================================
+
+        [HttpPost]
+        public async Task<WebApiCallBack> GetPositionList(WxAdvert entity)
+        {
+            var jm = new WebApiCallBack();
+
+            return jm;
+        }
+
+        #endregion 获取广告位置信息=============================================================================
     }
 }

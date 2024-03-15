@@ -1,10 +1,5 @@
 ﻿using CoreCms.Net.Model.Entities.Advert;
 using CoreCms.Net.Repository.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreCms.Net.Repository.Advert
 {
