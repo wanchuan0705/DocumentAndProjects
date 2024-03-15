@@ -41,7 +41,7 @@ namespace CoreCms.Net.Core.Config
                 {
                     NLogUtil.WriteFileLog(NLog.LogLevel.Error, LogType.Other, "SqlSugar", "执行SQL错误时间事件", exp);
                 };
-                db.CodeFirst.SetStringDefaultLength(255).InitTables(types);
+                //db.CodeFirst.SetStringDefaultLength(255).InitTables(types);
             });
         }
     }
